@@ -1,0 +1,28 @@
+title: RealTree Systems Documentation
+description: Documentation for systems and services
+theme: just-the-docs
+
+footer_content: "Copyright &copy; RealTree Systems 2025-2026. All rights reserved."
+
+url: https://docs.RealTree.cloud
+
+enable_copy_code_button: true
+
+nav_enabled: true
+
+back_to_top: true
+back_to_top_text: "Back to top"
+
+callouts:
+  warning:
+    title: Warning
+    color: red
+    opacity: 0.2
+  note:
+    title: Note
+    color: blue
+    opacity: 0.2
+  important:
+    title: Important
+    color: yellow
+    opacity: 0.2
