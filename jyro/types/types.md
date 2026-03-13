@@ -27,9 +27,9 @@ There is no distinction between integers and floating-point numbers at the type 
 
 ## Type hints
 
-Variables can be annotated with a type hint using a colon after the variable name. A variable with a type hint is said to be a "typed" variable, as opposed to an "untyped" variable when no type hint is provided.
+Variables and assignments can be annotated with a type hint using a colon before the assignment operator. When a type hint is present, the value is coerced to that type.
 
-When a type hint is present, the value is coerced to that type on every assignment - both at declaration and on subsequent reassignment.
+### On variable declarations
 
 ```jyro
 var count: number = 0
@@ -48,6 +48,24 @@ var name: type = value
 Where `type` is one of Jyro's types: `number`, `string`, `boolean`, `array`, or `object`.
 
 There is no `null` type hint. A type-hinted variable will reject `null` unless the value can be coerced to the target type.
+
+### On assignments
+
+Type hints can also be used on assignments, which is especially useful for `Data` members that cannot be declared with `var`:
+
+```jyro
+Data.count: number = 42
+Data.label: string = "hello"
+Data.active: boolean = true
+```
+
+The syntax is:
+
+```
+target: type = value
+```
+
+A type hint must appear on the **first** assignment to a name. Adding a hint after a name has already been assigned is a compile-time error. See [Assignment](/jyro/variables/assignment/) for details.
 
 ### Enforcement
 

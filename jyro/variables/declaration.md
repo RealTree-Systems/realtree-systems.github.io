@@ -51,3 +51,5 @@ Valid type keywords: `number`, `string`, `boolean`, `array`, `object`.
 For `string` to `boolean` coercion, the match is case-insensitive, so `true`, `True` and `TRUE` all work.
 
 For `array` and `object` type hints, there is no cross-type coercion - the value must already be of the matching type. Assigning a non-matching type to a typed variable of type `array` or `object` results in an error.
+
+Type hints can also be used on first [assignment](/jyro/variables/assignment/#type-hints-on-assignment), which is useful for `Data` members that cannot be declared with `var`.

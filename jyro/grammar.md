@@ -238,8 +238,10 @@ var_decl = "var" , identifier , [ ":" , type_keyword ] , [ "=" , expression ] ;
 assign_op = "=" | "+=" | "-=" | "*=" | "/=" | "%=" ;
 assign_target = identifier | property_access | index_access ;
 
-assignment_stmt = assign_target , assign_op , expression ;
+assignment_stmt = assign_target , [ ":" , type_keyword ] , assign_op , expression ;
 ```
+
+The optional type hint (`: type_keyword`) is only valid with the `=` operator and must appear on the first assignment to that name.
 
 #### If statement
 
