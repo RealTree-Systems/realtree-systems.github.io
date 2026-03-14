@@ -49,7 +49,7 @@ foreach order in Data.orders do
     end
 
     if order.amount is not number then
-        Data.errors = Append(Data.errors, "Missing amount for order: " + order.id)
+        Data.errors = Append(Data.errors, "Missing amount for order: " .. order.id)
         continue
     end
 
@@ -75,5 +75,5 @@ Data.processed = SortByField(processed, "total", "desc")
 # 6. Create export view
 Data.export = Project(Data.processed, ["id", "amount", "total", "processedAt"])
 
-exit "Processed " + count + " orders"
+exit "Processed " .. count .. " orders"
 ```

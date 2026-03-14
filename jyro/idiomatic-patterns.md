@@ -167,17 +167,17 @@ Extract repetitive validation into pure functions. Each function validates one c
 ```jyro
 func RequireString(value, fieldName)
     if value is not string or value == "" then
-        fail fieldName + " is required"
+        fail fieldName .. " is required"
     end
     return value
 end
 
 func RequireNumber(value, fieldName, min, max)
     if value is not number then
-        fail fieldName + " must be a number"
+        fail fieldName .. " must be a number"
     end
     if value < min or value > max then
-        fail fieldName + " must be between " + ToString(min) + " and " + ToString(max)
+        fail fieldName .. " must be between " .. ToString(min) .. " and " .. ToString(max)
     end
     return value
 end

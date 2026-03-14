@@ -35,7 +35,7 @@ Always test the return value before using it:
 ```jyro
 var num = ToNumber(Data.input)
 if num is null then
-    fail "Invalid number: " + Data.input
+    fail "Invalid number: " .. Data.input
 end
 ```
 
@@ -148,17 +148,37 @@ end
 
 Jyro is explicit about block delimiters. Every `if`, `while`, `for`, `foreach`, and `switch` block must be closed with `end`. Inside a `switch`, each `case` and `default` block is implicitly terminated by the next `case`, `default`, or the closing `end`. A missing `end` causes a parse error at the end of the script or at the start of the next block.
 
-## 10. No string interpolation
+## 10. No string interpolation — use `..` not `+`
 
-Jyro does not support template syntax like `${name}` or `{name}` inside strings. These are treated as literal characters, not variable references. Use the `+` operator to concatenate values into strings:
+Jyro does not support template syntax like `${name}` or `{name}` inside strings. These are treated as literal characters, not variable references. Use the `..` operator to concatenate values into strings:
 
 ```jyro
 # INCORRECT - produces the literal text "${name}", not the variable's value
 "Hello ${name}"
 "Hello {name}"
 
-# CORRECT - concatenation converts the variable to a string
+# ALSO INCORRECT - runtime or compile-time error: + requires numeric operands
 "Hello " + name
+
+# CORRECT - .. converts the variable to a string
+"Hello " .. name
+```
+
+## 10a. `+` is numeric-only
+
+The `+` operator is restricted to numeric addition. Using `+` with a string operand is a **compile-time error** when the string is statically known (string literal or type-hinted variable), or a **runtime error** otherwise. Always use `..` for string concatenation:
+
+```jyro
+# INCORRECT - compile-time error (string literal operand)
+var greeting = "Hello, " + name
+
+# INCORRECT - runtime error (dynamic string value)
+var s = Data.someString
+var result = s + " suffix"
+
+# CORRECT
+var greeting = "Hello, " .. name
+var result = s .. " suffix"
 ```
 
 ## 11. Min()/Max()/Sum()/Average() take arrays, not multiple arguments

@@ -34,16 +34,38 @@ The following escape sequences are recognised within string literals:
 | `\0` | Null character |
 | `\uXXXX` | Unicode code point (4 hex digits) |
 
-## No string interpolation
+## String concatenation
 
-Jyro does not support string interpolation. Use the `+` operator for concatenation:
+Use the `..` operator to join strings. Non-string operands (numbers, booleans, null) are automatically converted to their string representation:
 
 ```jyro
-var greeting = "Hello, " + name     # Correct
-# var greeting = "Hello, ${name}"   # INCORRECT - not supported
+var greeting = "Hello, " .. name          # string .. string
+var label = "Count: " .. 42              # "Count: 42"
+var flag = "Active: " .. true            # "Active: true"
+var msg = "Value: " .. null              # "Value: null"
 ```
 
-When either operand of `+` is a string, the other operand is automatically converted to its string representation.
+The `..=` compound assignment operator appends to an existing string:
+
+```jyro
+var s = "Hello"
+s ..= ", world"    # s is now "Hello, world"
+```
+
+Because `..` has lower precedence than `+` and `-`, arithmetic is evaluated first:
+
+```jyro
+"Sum: " .. x + y    # "Sum: " .. (x + y)
+```
+
+## No string interpolation
+
+Jyro does not support string interpolation. Use the `..` operator instead:
+
+```jyro
+var greeting = "Hello, " .. name        # Correct
+# var greeting = "Hello, ${name}"       # INCORRECT - not supported
+```
 
 ## Regex pattern escaping
 
