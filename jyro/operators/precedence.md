@@ -17,7 +17,7 @@ Operators are listed from highest precedence (evaluated first) to lowest.
 | 2 | `++x` `--x` `-x` | Prefix inc/dec, negate | Right |
 | 3 | `*` `/` `%` | Multiplicative | Left |
 | 4 | `+` `-` | Additive | Left |
-| 5 | `..` | String concatenation | Left |
+| 5 | `&` | String concatenation | Left |
 | 6 | `<` `<=` `>` `>=` | Relational | Left |
 | 7 | `==` `!=` | Equality | Left |
 | 8 | `is` `is not` | Type checking | - |
@@ -27,11 +27,11 @@ Operators are listed from highest precedence (evaluated first) to lowest.
 | 12 | `??` | Null coalescing | Right |
 | 13 | `? :` | Ternary conditional | Right |
 
-Assignment operators (`=`, `+=`, `-=`, `*=`, `/=`, `%=`, `..=`) are statements, not expressions, and do not participate in the precedence table.
+Assignment operators (`=`, `+=`, `-=`, `*=`, `/=`, `%=`, `&=`) are statements, not expressions, and do not participate in the precedence table.
 
-Because `..` has lower precedence than `+` and `-`, arithmetic expressions are evaluated first:
+Because `&` has lower precedence than `+` and `-`, arithmetic expressions are evaluated first:
 
 ```jyro
-"Sum: " .. x + y     # "Sum: " .. (x + y), e.g. "Sum: 15"
-"Product: " .. x * y # "Product: " .. (x * y), e.g. "Product: 50"
+"Sum: " & x + y     # "Sum: " & (x + y), e.g. "Sum: 15"
+"Product: " & x * y # "Product: " & (x * y), e.g. "Product: 50"
 ```

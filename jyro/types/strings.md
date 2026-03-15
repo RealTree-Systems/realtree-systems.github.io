@@ -36,34 +36,34 @@ The following escape sequences are recognised within string literals:
 
 ## String concatenation
 
-Use the `..` operator to join strings. Non-string operands (numbers, booleans, null) are automatically converted to their string representation:
+Use the `&` operator to join strings. Non-string operands (numbers, booleans, null) are automatically converted to their string representation:
 
 ```jyro
-var greeting = "Hello, " .. name          # string .. string
-var label = "Count: " .. 42              # "Count: 42"
-var flag = "Active: " .. true            # "Active: true"
-var msg = "Value: " .. null              # "Value: null"
+var greeting = "Hello, " & name          # string & string
+var label = "Count: " & 42              # "Count: 42"
+var flag = "Active: " & true            # "Active: true"
+var msg = "Value: " & null              # "Value: null"
 ```
 
-The `..=` compound assignment operator appends to an existing string:
+The `&=` compound assignment operator appends to an existing string:
 
 ```jyro
 var s = "Hello"
-s ..= ", world"    # s is now "Hello, world"
+s &= ", world"    # s is now "Hello, world"
 ```
 
-Because `..` has lower precedence than `+` and `-`, arithmetic is evaluated first:
+Because `&` has lower precedence than `+` and `-`, arithmetic is evaluated first:
 
 ```jyro
-"Sum: " .. x + y    # "Sum: " .. (x + y)
+"Sum: " & x + y    # "Sum: " & (x + y)
 ```
 
 ## No string interpolation
 
-Jyro does not support string interpolation. Use the `..` operator instead:
+Jyro does not support string interpolation. Use the `&` operator instead:
 
 ```jyro
-var greeting = "Hello, " .. name        # Correct
+var greeting = "Hello, " & name        # Correct
 # var greeting = "Hello, ${name}"       # INCORRECT - not supported
 ```
 

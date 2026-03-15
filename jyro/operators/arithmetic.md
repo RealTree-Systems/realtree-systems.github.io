@@ -9,7 +9,7 @@ permalink: /jyro/operators/arithmetic/
 
 # Arithmetic Operators
 
-All arithmetic operators require both operands to be numbers. Use the `..` operator for string concatenation.
+All arithmetic operators require both operands to be numbers. Use the `&` operator for string concatenation.
 
 | Operator | Description |
 |----------|-------------|
